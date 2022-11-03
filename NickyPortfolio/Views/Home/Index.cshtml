@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="main">
+        <div class="content">
+            <div class="right">
+                <h1 class="main-title"><span>Nicky Da Costa</span></h1>
+                <div class="subtitle"><h3>Gallery</h3></div>
+            </div>
+            <div class="media-icons"></div>
+        </div>
+    </div>
+    <div id="project" class="project">
+        <div id="gallery">
+            <h2 class="secondary-title">Albums</h2>
+            <div class="gallery">
+                <div class="p-row">
+                    <div class="p-tab">
+                        <div class="p-title">Orient</div>
+                        <div class="p-sub-title">2022</div>
+                        <a asp-controller="Albums" asp-action="Index"> 
+                            <img class="p-thumb" src="">
+                        </a>
+                    </div>
+
+                    <div class="p-tab">
+                        <div class="p-title">Undo</div>
+                        <div class="p-sub-title">2021 - Present</div>
+                        <a asp-controller="Albums" asp-action="Index"> 
+                            <img class="p-thumb" src=""/>
+                        </a>    
+                    </div>
+
+                    <div class="p-tab">
+                        <div class="p-title">Undo</div>
+                        <div class="p-sub-title">2021 </div>
+                        <a asp-controller="Albums" asp-action="Index"> 
+                            <img class="p-thumb" src=""/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
