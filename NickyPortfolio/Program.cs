@@ -1,9 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using NickyPortfolio.Data;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<NickyPortfolioDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("NickyPortfolioDbContext") ?? throw new InvalidOperationException("Connection string 'NickyPortfolioDbContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
