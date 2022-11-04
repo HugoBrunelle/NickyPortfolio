@@ -16,27 +16,9 @@ namespace NickyPortfolio.Controllers
         }
 
         // GET: Albums
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
               return View();
-        }
-
-        // GET: Albums/ShowSearchPage
-        public async Task<IActionResult> ShowSearchPage()
-        {
-            return View();
-        }
-
-        // GET: Albums/ShowSearchResult
-        public async Task<IActionResult> ShowSearchResult(String SearchPhrase)
-        {
-            return View("Index");
-        }
-
-        // GET: Albums/Create
-        public IActionResult Create()
-        {
-            return View();
         }
     }
 }
