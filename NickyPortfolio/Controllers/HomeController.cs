@@ -15,7 +15,11 @@ namespace NickyPortfolio.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            string albumsDirectory = $"{Directory.GetCurrentDirectory()}\\Albums";
+            string[] albumPaths = Directory.GetDirectories(albumsDirectory);
+            string[] albumNames = albumPaths.Select(a => Path.GetFileName(a)).ToArray();
+
+            return View(albumNames);
         }
 
         public IActionResult Privacy()

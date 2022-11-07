@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model string[]
 
 <div class="text-center">
     <div class="main">
@@ -17,29 +15,16 @@
             <h2 class="secondary-title">Albums</h2>
             <div class="gallery">
                 <div class="p-row">
-                    <div class="p-tab">
-                        <div class="p-title">Orient</div>
-                        <div class="p-sub-title">2022</div>
-                        <a asp-controller="Albums" asp-action="Index"> 
-                            <img class="p-thumb" src="images/background.JPG">
-                        </a>
-                    </div>
-
-                    <div class="p-tab">
-                        <div class="p-title">Undo</div>
-                        <div class="p-sub-title">2021 - Present</div>
-                        <a asp-controller="Albums" asp-action="Index"> 
-                            <img class="p-thumb" src=""/>
-                        </a>    
-                    </div>
-
-                    <div class="p-tab">
-                        <div class="p-title">Undo</div>
-                        <div class="p-sub-title">2021 </div>
-                        <a asp-controller="Albums" asp-action="Index"> 
-                            <img class="p-thumb" src=""/>
-                        </a>
-                    </div>
+                    @foreach (string albumName in Model)
+                    {
+                        <div class="p-tab">
+                            <div class="p-title">@albumName</div>
+                            <div class="p-sub-title">2022</div>
+                            <a asp-controller="Albums" asp-action="Index"> 
+                                <img class="p-thumb" src="images/background.JPG">
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

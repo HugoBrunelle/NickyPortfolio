@@ -15,13 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\images\background.JPG" />
     <None Include="wwwroot\images\close.png" />
     <None Include="wwwroot\images\menu.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Albums\Undo\" />
+    <Folder Include="Albums\Orient\" />
   </ItemGroup>
 
 </Project>
