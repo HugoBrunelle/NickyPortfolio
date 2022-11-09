@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Albums\Undo\**" />
+    <Content Remove="Albums\Undo\**" />
+    <EmbeddedResource Remove="Albums\Undo\**" />
+    <None Remove="Albums\Undo\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,11 +25,6 @@
     <None Include="wwwroot\images\background.JPG" />
     <None Include="wwwroot\images\close.png" />
     <None Include="wwwroot\images\menu.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Albums\Undo\" />
-    <Folder Include="Albums\Orient\" />
   </ItemGroup>
 
 </Project>
