@@ -1,13 +1,11 @@
-﻿@model IEnumerable<NickyPortfolio.Models.Album>
+﻿@model string
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<div id="orient" class="fade-effect fade">
+<div id="orient" class="">
     <h2>Orient</h2>
     <div class="back-btn" onclick="accessGallery()">BACK</div>
-        
+    
+    <div id="image-placeholder" />
+    
     <div id="slider" class="slider-wrapper">
         <button class="slide-arrow" id="slide-arrow-prev">
         &#8249;
@@ -18,7 +16,39 @@
         </button>
           
         <ul class="slides-container" id="slides-container">
-        <img class="slide" src="images/orient/R0008071.JPG"/>
+            <li>
+            </li>
         </ul>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetAlbum")\?name=@Model",
+            dataType: "json",
+            success: onSuccess,
+            error: onError
+        });
+
+        function displayBase64Image(placeholder, base64Image) {
+            placeholder.html('');
+            $('<img>', {
+                src: base64Image
+            }).appendTo(placeholder);
+        }
+
+        function onSuccess(result) {
+            let test = 'data:image/jpeg;base64,' + result.value[0];
+            console.log('Trying to display: ' + test);
+            displayBase64Image(placeholder, test);
+        }
+
+        function onError(req, status, error) {
+            // Do nothing for now
+        }
+
+        let placeholder = $('#image-placeholder');
+    </script>
+}
