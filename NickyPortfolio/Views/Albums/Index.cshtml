@@ -1,28 +1,22 @@
 ﻿@model string
 
-<div id="orient" class="">
+<div id="orient" class="text-center">
     <h2>Orient</h2>
-    <div class="back-btn" onclick="accessGallery()">BACK</div>
-    
-    <div id="image-placeholder" />
     
     <div id="slider" class="slider-wrapper">
         <button class="slide-arrow" id="slide-arrow-prev">
         &#8249;
         </button>
-          
         <button class="slide-arrow" id="slide-arrow-next">
         &#8250;
         </button>
           
         <ul class="slides-container" id="slides-container">
-            <li>
-            </li>
         </ul>
     </div>
 </div>
 
-@section Scripts {
+@section Scripts {  
     <script>
         $.ajax({
             type: "GET",
@@ -34,9 +28,7 @@
 
         function displayBase64Image(placeholder, base64Image) {
             placeholder.html('');
-            $('<img>', {
-                src: base64Image
-            }).appendTo(placeholder);
+            $(placeholder).append('<li><img src="' + base64Image + '" /></li>')
         }
 
         function onSuccess(result) {
@@ -49,6 +41,6 @@
             // Do nothing for now
         }
 
-        let placeholder = $('#image-placeholder');
+        let placeholder = $('#slides-container');
     </script>
 }
