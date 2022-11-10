@@ -3,6 +3,8 @@
 <div id="orient" class="text-center">
     <h2 class="secondary-title">Orient</h2>
     
+    <div class="loader" style="display: none"></div>
+
     <div id="slider" class="slider-wrapper">
         <button class="slide-arrow" id="slide-arrow-prev">
         &#8249;
@@ -27,14 +29,17 @@
         });
 
         function displayBase64Image(placeholder, base64Image) {
-            placeholder.html('');
             $(placeholder).append('<li><img src="' + base64Image + '" /></li>')
         }
 
         function onSuccess(result) {
-            let test = 'data:image/jpeg;base64,' + result.value[0];
-            console.log('Trying to display: ' + test);
-            displayBase64Image(placeholder, test);
+            let images64 = result.value.map(b64 => 'data:image/jpeg;base64,' + b64);
+            
+            placeholder.html('');
+            for (let image of images64) {
+                console.log(image);
+                displayBase64Image(placeholder, image);
+            }
         }
 
         function onError(req, status, error) {
