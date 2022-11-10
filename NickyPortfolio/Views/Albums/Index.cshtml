@@ -16,6 +16,12 @@
         <ul class="slides-container" id="slides-container">
         </ul>
     </div>
+
+    <div id="images-display">
+        <div id="images-container" class="p-row">
+            
+        </div>
+    </div>
 </div>
 
 @section Scripts {  
@@ -28,17 +34,20 @@
             error: onError
         });
 
-        function displayBase64Image(placeholder, base64Image) {
-            $(placeholder).append('<li><img src="' + base64Image + '" /></li>')
+        function displayBase64Image(base64Image) {
+            $(sliderPlaceholder).append('<li><img src="' + base64Image + '" /></li>');
+            $(imagesPlaceholder).append('<div class="p-tab"><img src="' + base64Image + '" /></div>')
+
         }
 
         function onSuccess(result) {
             let images64 = result.value.map(b64 => 'data:image/jpeg;base64,' + b64);
             
-            placeholder.html('');
+            console.log('This is a success baby !');
+
             for (let image of images64) {
                 console.log(image);
-                displayBase64Image(placeholder, image);
+                displayBase64Image(image);
             }
         }
 
@@ -46,6 +55,7 @@
             // Do nothing for now
         }
 
-        let placeholder = $('#slides-container');
+        let sliderPlaceholder = $('#slides-container');
+        let imagesPlaceholder = $('#images-container');
     </script>
 }
