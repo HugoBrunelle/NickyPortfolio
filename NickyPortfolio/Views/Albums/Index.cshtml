@@ -26,6 +26,40 @@
 
 @section Scripts {  
     <script>
+
+         function displayBase64Images(base64Images) {
+             if (!base64Images)
+                return;
+
+            $(sliderPlaceholder).append(`
+                <li>
+                    <img src="` + base64Images[0] + `" />
+                </li>`
+            );
+            9ii
+            
+            for (let image of base64Images) {
+                $(imagesPlaceholder).append(`
+                    <div class="p-tab">
+                        <img src="` + image + `" />
+                    </div>`
+                );
+            }
+        }
+
+        function onSuccess(result) {
+            let base64Images = result.value
+                .map(b64 => 'data:image/jpeg;base64,' + b64);
+            displayBase64Images(base64Images)
+        }
+
+        function onError(req, status, error) {
+            // Do nothing
+        }
+
+        let sliderPlaceholder = $('#slides-container');
+        let imagesPlaceholder = $('#images-container');
+
         $.ajax({
             type: "GET",
             url: "@Url.Action("GetAlbum")\?name=@Model",
@@ -34,28 +68,5 @@
             error: onError
         });
 
-        function displayBase64Image(base64Image) {
-            $(sliderPlaceholder).append('<li><img src="' + base64Image + '" /></li>');
-            $(imagesPlaceholder).append('<div class="p-tab"><img src="' + base64Image + '" /></div>')
-
-        }
-
-        function onSuccess(result) {
-            let images64 = result.value.map(b64 => 'data:image/jpeg;base64,' + b64);
-            
-            console.log('This is a success baby !');
-
-            for (let image of images64) {
-                console.log(image);
-                displayBase64Image(image);
-            }
-        }
-
-        function onError(req, status, error) {
-            // Do nothing for now
-        }
-
-        let sliderPlaceholder = $('#slides-container');
-        let imagesPlaceholder = $('#images-container');
     </script>
 }
