@@ -15,6 +15,8 @@ namespace NickyPortfolio.Controllers
 
         public IActionResult Index()
         {
+            // Get the first image of an album as a thumbnail
+
             string albumsDirectory = $"{Directory.GetCurrentDirectory()}\\Albums";
             string[] albumPaths = Directory.GetDirectories(albumsDirectory);
             string[] albumNames = albumPaths.Select(a => Path.GetFileName(a)).ToArray();
