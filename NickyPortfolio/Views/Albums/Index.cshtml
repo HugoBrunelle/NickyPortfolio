@@ -19,26 +19,13 @@
 @section Scripts {
     <script>
 
-         function displayBase64Images(base64Images) {
-             if (!base64Images)
-                return;
-
-            $("#spinner").remove();
-
-            $(sliderPlaceholder).append(`
-                <li>
-                    <img src="` + base64Images[0] + `" />
-                </li>`
-            );
-            
-            for (let image of base64Images) {
-                $(imagesPlaceholder).append(`
-                    <div class="p-tab">
-                        <img src="` + image + `" />
-                    </div>`
-                );
-            }
-        }
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetAlbum")\?name=@Model",
+            dataType: "json",
+            success: onSuccess,
+            error: onError
+        });
 
         function onSuccess(result) {
             let base64Images = result.value
@@ -50,16 +37,18 @@
             // Do nothing
         }
 
-        let sliderPlaceholder = $('#slides-container');
-        let imagesPlaceholder = $('#images-container');
+        function displayBase64Images(base64Images) {
+             if (!base64Images)
+                return;
 
-        $.ajax({
-            type: "GET",
-            url: "@Url.Action("GetAlbum")\?name=@Model",
-            dataType: "json",
-            success: onSuccess,
-            error: onError
-        });
+            $("#spinner").remove();
+            for (let image of base64Images) {
+                $(imagesPlaceholder).append(
+                    '<div class="p-tab"><img src="' + image + '" /></div>'
+                );
+            }
+        }
+        let imagesPlaceholder = $('#images-container');
 
     </script>
 }
