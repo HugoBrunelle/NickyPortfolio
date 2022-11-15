@@ -9,9 +9,8 @@
         </div>
     </div>
 
-    <div id="images-display">
+    <div id="images-display" class="min-vh-100">
         <div id="images-container" class="p-row">
-            
         </div>
     </div>
 </div>
@@ -23,32 +22,32 @@
             type: "GET",
             url: "@Url.Action("GetAlbum")\?name=@Model",
             dataType: "json",
-            success: onSuccess,
-            error: onError
+            success: onSuccess
         });
 
         function onSuccess(result) {
-            let base64Images = result.value
-                .map(b64 => 'data:image/jpeg;base64,' + b64);
+            if (!result || !result.value) {
+                displayNoResult();
+                return;
+            }
+            let base64Images = result.value.map(b64 => 'data:image/jpeg;base64,' + b64);
             displayBase64Images(base64Images)
         }
 
-        function onError(req, status, error) {
-            // Do nothing
-        }
-
         function displayBase64Images(base64Images) {
-             if (!base64Images)
-                return;
-
+            console.log('inside displayBase64');
+            console.log(base64Images);
             $("#spinner").remove();
             for (let image of base64Images) {
-                $(imagesPlaceholder).append(
-                    '<div class="p-tab"><img src="' + image + '" /></div>'
-                );
+                $(imagesPlaceholder).append('<div class="p-tab"><img src="' + image + '" /></div>');
             }
         }
-        let imagesPlaceholder = $('#images-container');
 
+        function displayNoResult() {
+            $("#spinner").remove();
+            $(imagesPlaceholder).append('<h3>No images</h3>');
+        }
+
+        let imagesPlaceholder = $('#images-container');
     </script>
 }
