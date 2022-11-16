@@ -28,7 +28,7 @@ namespace NickyPortfolio.Controllers
         {
             // Verify if the album exist first
             // Then perform the task
-            string albumPath = $"{Directory.GetCurrentDirectory()}\\Albums\\{name}";
+            string albumPath = $".\\Albums\\{name}";
             string[] imagesPath = Directory.GetFiles(albumPath);
 
             if (imagesPath.Length == 0)

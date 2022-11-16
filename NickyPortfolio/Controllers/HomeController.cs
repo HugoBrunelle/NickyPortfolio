@@ -15,13 +15,23 @@ namespace NickyPortfolio.Controllers
 
         public IActionResult Index()
         {
-            // Get the first image of an album as a thumbnail
-
-            string albumsDirectory = $"{Directory.GetCurrentDirectory()}\\Albums";
-            string[] albumPaths = Directory.GetDirectories(albumsDirectory);
+            Dictionary<string, string> thumbnail = new();
+            string[] albumPaths = Directory.GetDirectories(".\\Albums");
             string[] albumNames = albumPaths.Select(a => Path.GetFileName(a)).ToArray();
 
-            return View(albumNames);
+            foreach(string name in albumNames)
+            {
+                string[] images = Directory.GetFiles($".\\Albums\\{name}");
+                if (images.Length > 0)
+                {
+                    thumbnail.Add(name, Convert.ToBase64String(System.IO.File.ReadAllBytes(images.First())));
+                }
+                else
+                {
+                    thumbnail.Add(name, String.Empty);
+                }
+            }
+            return View(thumbnail);
         }
 
         public IActionResult Privacy()

@@ -756,6 +756,11 @@ body {
         padding-top: 100px;
     }
 
+    .main .content {
+        margin-right: 0;
+        margin-top: 0;
+    }
+
     .p-row {
         flex-direction: column;
         justify-content: center;
@@ -769,6 +774,10 @@ body {
 
     .p-thumb {
         width: 100%;
+    }
+
+    .p-tab {
+        margin: 0px 20px 100px 20px;
     }
 
     header {

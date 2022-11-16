@@ -1,4 +1,4 @@
-﻿@model string[]
+﻿@model Dictionary<string, string>
 
 <div class="text-center">
     <div class="main">
@@ -15,13 +15,20 @@
             <h2 class="secondary-title">Albums</h2>
             <div class="gallery">
                 <div class="p-row">
-                    @foreach (string albumName in Model)
+                    @foreach (KeyValuePair<string, string> album in Model)
                     {
                         <div class="p-tab">
-                            <div class="p-title">@albumName</div>
+                            <div class="p-title">@album.Key</div>
                             <div class="p-sub-title">2022</div>
-                            <a asp-controller="Albums" asp-action="Index" asp-route-id="@albumName"> 
-                                <img class="p-thumb" src="images/background.JPG">
+                            <a asp-controller="Albums" asp-action="Index" asp-route-id="@album.Key">
+                                @if (album.Value == String.Empty)
+                                {
+                                    <img class="p-thumb" src="./images/background.JPG">
+                                }
+                                else
+                                {
+                                    <img class="p-thumb" src="data:image/jpeg;base64,@album.Value">
+                                }
                             </a>
                         </div>
                     }
